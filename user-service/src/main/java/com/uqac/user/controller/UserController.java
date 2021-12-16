@@ -46,4 +46,10 @@ public class UserController {
         return userService.deleteById(userId);
     }
 
+    @PostMapping("/update/")
+    public User updateUser(@RequestBody User user){
+        log.info("Inside updateUser method of UserController");
+        return userService.update(user);
+    }
+
 }

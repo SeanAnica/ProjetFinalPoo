@@ -72,4 +72,8 @@ public class UserService {
         log.info("Inside deleteUserById method of userService");
         return userRepository.deleteById(userId);
     }
+
+    public User update(User user) {
+        return userRepository.save(user);
+    }
 }

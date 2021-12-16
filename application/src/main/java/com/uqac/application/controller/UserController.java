@@ -63,4 +63,34 @@ public class UserController {
         restTemplate.delete("http://USER-SERVICE/users/" + id);
         return "redirect:/application/users/";
     }
+
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        User user = new User();
+
+        ResponseEntity<User> responseEntity =
+                restTemplate.exchange(
+                        "http://USER-SERVICE/users/only/" + id,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<User>() {}
+                );
+        user = responseEntity.getBody();
+        model.addAttribute("user", user);
+        return "users/update";
+    }
+
+    @RequestMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id, @Valid User user,
+                             BindingResult result, Model model) {
+       if(result.hasErrors()){
+           user.setUserId(id);
+           return "users/update";
+       }
+       user.setUserId(id);
+       HttpHeaders headers = new HttpHeaders();
+       headers.setContentType(MediaType.APPLICATION_JSON);
+       ResponseEntity<String> response = restTemplate.postForEntity("http://USER-SERVICE/users/update/", user, String.class);
+       return "redirect:/application/users/";
+    }
 }

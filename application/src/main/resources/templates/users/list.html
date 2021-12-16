@@ -25,6 +25,7 @@
                 <th scope="col">Adresse du département</th>
                 <th scope="col">Code du département</th>
                 <th scope="col" style="color: red">Supprimer</th>
+                <th scope="col" style="color: green">Editer</th>
             </tr>
             </thead>
             <tbody>
@@ -36,6 +37,7 @@
                 <td th:text="${user.department.departmentAddress}"></td>
                 <td th:text="${user.department.departmentCode}"></td>
                 <td><a th:href="@{/application/delete/{id}(id=${user.user.userId})}" style="color:red">X</a></td>
+                <td><a th:href="@{/application/edit/{id}(id=${user.user.userId})}" style="color:green">U</a></td>
             </tr>
             </tbody>
         </table>

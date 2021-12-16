@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mettre à jour un utilisateur</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<h2>Mettre à jour l'utilisateur</h2>
+
+<div class="container">
+    <form action="#"
+          th:action="@{/application/update/{id}(id=${user.userId})}"
+          th:object="${user}"
+          method="post">
+        <div class="form-group">
+            <label for="firstName">firstname</label>
+            <input type="text" class="form-control" th:field="*{firstName}" id="firstName" placeholder="Firstname">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color:red"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">lastname</label>
+            <input type="text" class="form-control" th:field="*{lastName}" id="lastName" placeholder="lastName">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color:red"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></span>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+            <label for="departmentId">departmentId</label>
+            <input type="text" class="form-control" th:field="*{departmentId}" id="departmentId" placeholder="departmentId">
+            <span th:if="${#fields.hasErrors('departmentId')}" th:errors="*{departmentId}" style="color:red"></span>
+        </div>
+        <input class="btn btn-success" type="submit" value="Editer">
+    </form>
+    <p><a href="/application/users" class="btn btn-danger">retour</a></p></div>
+</div>
+
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
