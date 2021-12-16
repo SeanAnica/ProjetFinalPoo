@@ -60,4 +60,11 @@ public class UserService {
 
         return vo;
     }
+
+    public User getUser(Long userId) {
+        log.info("Inside getUser from UserService");
+        User user = userRepository.findByUserId(userId);
+
+        return user;
+    }
 }

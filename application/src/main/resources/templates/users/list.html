@@ -11,9 +11,9 @@
     <tr>
         <th>prénom</th>
     </tr>
-    <!--<tr th:each="response : ${responses}">
-        <td th:text="${response.firstname}"></td>
-    </tr>-->
+    <tr th:each="user : ${users}">
+        <td th:text="${user.firstName}"></td>
+    </tr>
 </table>
 
 </body>

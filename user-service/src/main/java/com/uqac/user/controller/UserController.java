@@ -23,6 +23,11 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    @GetMapping("/only/{id}")
+    public User getUserOnly(@PathVariable("id") Long userId){
+        return userService.getUser(userId);
+    }
+
     @GetMapping("/{id}")
     public ResponseTemplateVO getUserWithDepartment(@PathVariable("id") Long userId){
         log.info("Inside getUserWithDepartment from UserController");
