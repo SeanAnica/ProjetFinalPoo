@@ -40,4 +40,10 @@ public class UserController {
         return userService.getAllUsersWithDepartments();
     }
 
+    @DeleteMapping("/{id}")
+    public User deleteUserById(@PathVariable("id") long userId){
+        log.info("Inside deleteUserById method of UserController");
+        return userService.deleteById(userId);
+    }
+
 }

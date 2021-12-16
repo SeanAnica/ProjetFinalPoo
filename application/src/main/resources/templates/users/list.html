@@ -3,18 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste d'utilisateurs</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
+
+<header th:insert="users/nav.html :: header"> </header>
+
 <h1>Liste des utilisateurs</h1>
 
-<table>
-    <tr>
-        <th>prénom</th>
-    </tr>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.firstName}"></td>
-    </tr>
-</table>
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Prénom</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">Département</th>
+                <th scope="col">Adresse du département</th>
+                <th scope="col">Code du département</th>
+                <th scope="col" style="color: red">Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <th scope="row" th:text="${user.user.firstName}"></th>
+                <td th:text="${user.user.lastName}"></td>
+                <td th:text="${user.user.email}"></td>
+                <td th:text="${user.department.departmentName}"></td>
+                <td th:text="${user.department.departmentAddress}"></td>
+                <td th:text="${user.department.departmentCode}"></td>
+                <td><a th:href="@{/application/delete/{id}(id=${user.user.userId})}" style="color:red">X</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/application/signup" class="btn btn-primary">Ajouter un nouvel utilisateur</a></p></div>
+
+
+<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

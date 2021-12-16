@@ -67,4 +67,9 @@ public class UserService {
 
         return user;
     }
+
+    public User deleteById(long userId) {
+        log.info("Inside deleteUserById method of userService");
+        return userRepository.deleteById(userId);
+    }
 }
