@@ -27,7 +27,7 @@ public class UserController {
     private RestTemplate restTemplate;
 
     @RequestMapping("/users")
-    String getUsers(Model model) {
+    public String getUsers(Model model) {
         List<ResponseTemplateVO> usersWithDepartments = new ArrayList<ResponseTemplateVO>();
         ResponseEntity<List<ResponseTemplateVO>> responseEntity =
                 restTemplate.exchange(
